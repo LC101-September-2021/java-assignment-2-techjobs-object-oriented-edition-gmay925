@@ -1,4 +1,4 @@
-package org.launchcode.techjobs.oo.test;
+package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
