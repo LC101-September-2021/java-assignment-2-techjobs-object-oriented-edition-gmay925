@@ -2,17 +2,17 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
-public abstract class JobFields {
+public abstract class JobField {
     private final int id;
     private static int nextId = 1;
     private String value;
 
-    public JobFields() {
+    public JobField() {
         id = nextId;
         nextId++;
     }
 
-    public JobFields(String value) {
+    public JobField(String value) {
         this();
 
         this.value = value;
@@ -22,11 +22,12 @@ public abstract class JobFields {
     public String toString() {
         return value;
     }
+
     @Override
     public boolean equals(Object o) {  // Two objects are equal if they have the same id.
         if (this == o) return true;
-        if (!(o instanceof JobFields)) return false;
-        JobFields job = (JobFields) o;
+        if (!(o instanceof JobField)) return false;
+        JobField job = (JobField) o;
         return getId() == job.getId();
     }
 
@@ -42,9 +43,6 @@ public abstract class JobFields {
     }
 
     public String getValue() {
-        if(value.isEmpty()){
-            return "No data available";
-        }
         return value;
     }
 

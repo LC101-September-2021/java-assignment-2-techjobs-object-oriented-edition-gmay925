@@ -23,6 +23,7 @@ public class Job {
     }
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -34,16 +35,14 @@ public class Job {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof Job)) return false;
         Job job = (Job) o;
-
         return id == job.id;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return Objects.hash(id);
     }
 // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
@@ -55,15 +54,14 @@ public class Job {
 
 
     public String getName() {
-        if(name.isEmpty()){
-            return "No data available";
-        }
         return name;
     }
 
     public Employer getEmployer() {
         return employer;
     }
+
+//    public Job getJob() { return job; }
 
     public Location getLocation() {
         return location;
@@ -99,6 +97,27 @@ public class Job {
 
     @Override
     public String toString() {
+
+
+        if(name == "" && employer.getValue() == "" && location.getValue() == "" && positionType.getValue() == "" && coreCompetency.getValue() == ""){
+            return "\nOOPS! This job does not seem to exist.\n";
+        }
+
+        if(name == null || name == ""){
+            name = "Data not available";
+        }
+        if(employer.getValue() == null || employer.getValue() == ""){
+            employer.setValue("Data not available");
+        }
+        if(location.getValue() == null || location.getValue() == ""){
+            location.setValue("Data not available");
+        }
+        if(positionType.getValue() == null || positionType.getValue() == ""){
+            positionType.setValue("Data not available");
+        }
+        if(coreCompetency.getValue() == null || coreCompetency.getValue() == ""){
+            coreCompetency.setValue("Data not available");
+        }
         return "\nID: " + this.getId() +
                 "\nName: " + this.getName() +
                 "\nEmployer: " + this.getEmployer() +
